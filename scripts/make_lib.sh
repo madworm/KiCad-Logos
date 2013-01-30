@@ -14,29 +14,27 @@ LIB_FOLDER="./lib"
 
 if [[ ! -d $LIB_FOLDER ]]
 then
-	echo -e "\n creating '$LIB_FOLDER' folder\n"
+	echo -e "\n Hey, the library folder is missing... creating '$LIB_FOLDER' folder\n"
 	mkdir $LIB_FOLDER
 fi
 
 echo -e "\n working...\n"
 
+TMP_FILE=`mktemp`
+
 for number in `seq $RANGE_START $RANGE_END`
 do
-	TMP_FILE=`mktemp`
         ./scale.pl $INPUT_FILE $TMP_FILE 21 ${number}.0mm
 	perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_silkscreen-front_${number}mm/" $TMP_FILE
 	cat $TMP_FILE >> ./$LIB_NAME
-	rm $TMP_FILE
 
         ./scale.pl $INPUT_FILE $TMP_FILE 20 ${number}.0mm
 	perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_silkscreen-back_${number}mm/" $TMP_FILE
 	cat $TMP_FILE >> ./$LIB_NAME
-	rm $TMP_FILE
 done
 
 for number in `seq $RANGE_START $RANGE_END`
 do
-	TMP_FILE=`mktemp`
        	./scale.pl $INPUT_FILE $TMP_FILE 15 ${number}.0mm
 	perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_copper-front_${number}mm/" $TMP_FILE
 	cat $TMP_FILE >> ./$LIB_NAME
@@ -45,6 +43,9 @@ do
 	perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_copper-back_${number}mm/" $TMP_FILE
 	cat $TMP_FILE >> ./$LIB_NAME
 done
+
+echo -e "\n cleaning up... removed $TMP_FILE\n"
+rm $TMP_FILE
 
 mv $LIB_NAME $LIB_FOLDER
 
