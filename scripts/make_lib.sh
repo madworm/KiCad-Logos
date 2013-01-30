@@ -10,6 +10,15 @@ INPUT_FILE=$1
 LIB_NAME=$2
 RANGE_START=$3
 RANGE_END=$4
+LIB_FOLDER="./lib"
+
+if [[ ! -d $LIB_FOLDER ]]
+then
+	echo -e "\n creating '$LIB_FOLDER' folder\n"
+	mkdir $LIB_FOLDER
+fi
+
+echo -e "\n working...\n"
 
 for number in `seq $RANGE_START $RANGE_END`
 do
@@ -37,5 +46,6 @@ do
 	cat $TMP_FILE >> ./$LIB_NAME
 done
 
-mv $LIB_NAME ./lib
+mv $LIB_NAME $LIB_FOLDER
 
+echo -e "\n done.\n"
