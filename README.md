@@ -9,8 +9,8 @@ Sizes: 1..20mm for most logos.
 Layers: silkscreen-front, silkscreen-back, copper-front, copper-back.
 
 
-The graphics are mirrored for the back-layers. You only have to put the curser above it and 'flip' the footprint by pressing 'f'.
+If necessary, the graphics are available in mirrored versions for the back-layers. Once inserted to your board, you only have to hover the curser above it and 'flip' the footprint by pressing 'f'.
 
 ---
 
-[![KiCad-Logos preview](https://github.com/madworm/KiCad-Logos/raw/master/docs/KiCad-Logos_preview.png)](https://github.com/madworm/YauDL/blob/master/docs/KiCad-Logos_preview.png)
+[![KiCad-Logos preview](https://github.com/madworm/KiCad-Logos/raw/master/docs/KiCad-Logos_preview.png)](https://github.com/madworm/KiCad-Logos/blob/master/docs/KiCad-Logos_preview.png)
