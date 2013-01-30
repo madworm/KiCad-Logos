@@ -24,11 +24,14 @@ If you use linux (which you should), you don't have to use the online-scaler. Ju
 
 * Run the 'make_lib.sh' script as follows:
 
-./make_lib.sh input-file.emp lib-name.mod START END
+./make_lib.sh input-file.emp lib-name.mod <START> <END> <y/n>
 
 
-START and END are placeholders for positive integer numbers (1,2,3...) that determine
+'START' and 'END' are placeholders for positive integer numbers (1,2,3...) that determine
 the range of created footprint sizes. The units are metric (mm).
+
+Answer with 'y' or 'n', whether the image is horizontally symmetric. If it is, it doesn't
+have to be mirrored for back-layers. This will cut the library size in half.
 
 The 'lib-name.mod' file will show up in the 'lib' sub-folder. Add it to your pcbnew
 library settings as usual.
