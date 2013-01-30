@@ -13,4 +13,4 @@ The graphics are mirrored for the back-layers. You only have to put the curser a
 
 ---
 
-[![KiCad-Logos preview](https://github.com/madworm/KiCad-Logos/raw/master/KiCad-Logos_preview.png)](https://github.com/madworm/YauDL/blob/master/KiCad-Logos_preview.png)
+[![KiCad-Logos preview](https://github.com/madworm/KiCad-Logos/raw/master/docs/KiCad-Logos_preview.png)](https://github.com/madworm/YauDL/blob/master/docs/KiCad-Logos_preview.png)
