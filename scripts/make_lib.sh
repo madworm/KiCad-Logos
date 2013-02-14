@@ -6,7 +6,7 @@ then
 	echo -e "\n         <start>, <increment> and <end> are integer (1,2,3...) sizes in mm (metric)."
 	echo -e "\n         Images with horizontal symmetry don't need to be mirrored for back-layers. Answer with 'y' or 'n'."
 	echo -e "\n\n  Example 1: create a library with sizes of 5, 10, 15 and 20mm for a h-symmetric logo."
-	echo -e "\n             $0 my-logo.emp my-logo.mod 0 5 20 y\n"
+	echo -e "\n             $0 my-logo.emp my-logo.mod 5 5 20 y\n"
 	echo -e "\n  Example 2: create a library with sizes of 10, 20, and 30mm for a non-h-symmetric logo."
 	echo -e "\n             $0 my-logo.emp my-logo.mod 10 10 30 n\n"
 	exit
