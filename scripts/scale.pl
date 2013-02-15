@@ -60,10 +60,10 @@ if($size =~ m/^\d{1,3}\.\d{1,3}in$/) {
 open(FILE,'>',$outfile) || die("cannot open: $!");
 foreach $line (@infiledata) {
 	my $tmp = $line;
-	if($tmp =~ m/^(.*Dl)\ (.*)\ (.*)$/) {
-		if( ($layer == 21) || ($layer == 15) ) { # top silkscreen or top copper
+	if($tmp =~ m/^(.*Dl)\ (.*)\ (.*)$/) { # polygon line segment with (x,y) coordinates
+		if( ($layer == 23) || ($layer == 21) || ($layer == 15) ) { # top layer (mask, silkscreen, copper)
 			print FILE $1," ",int($2*$factor)," ",int($3*$factor),"\n";
-		} elsif ( ($layer == 20) || ($layer == 0) ) { # bottom silkscreen or bottom copper - needs horizontal mirroring
+		} elsif ( ($layer ==22) || ($layer == 20) || ($layer == 0) ) { # bottom layer (mask, silkscreen, copper) - needs horizontal mirroring
 			print FILE $1," ",int((-1)*$2*$factor)," ",int($3*$factor),"\n";
 		}
 	} elsif($tmp =~ m/^T(\d{1})\ 0\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ ([A-Z]{1})\ ([A-Z]{1})\ (-{0,1}\d*)\ (\".*\")$/) {
@@ -72,11 +72,13 @@ foreach $line (@infiledata) {
 		# and things go haywire (text always appers on 'top'-whatever
 		# when graphics are on 'bottom'-whatever and vice versa).
 		print FILE "T$1 0 ",int($2*$factor)," ",int($3*$factor)," ",int($4*$factor)," ",int($5*$factor)," ",int($6*$factor)," ",$7," ",$8," 21 N ",$10,"\n"; 
-	} elsif($tmp =~ m/^(.*DP)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)(.*)$/) {
-		if( ($layer == 0) || ($layer == 15) ) { # on top/bottom copper layer - always print on top-copper to avoid crap. see above
+	} elsif($tmp =~ m/^(.*DP)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)\ (-{0,1}\d*)(.*)$/) { # start of new polygon
+		if( ($layer == 15) || ($layer == 0) ) { # on top/bottom copper layer - always print on top-copper to avoid crap. see above
 			print FILE "$1 $2 $3 $4 $5 $6 $7 15\n";
-		} elsif ( ($layer == 20) || ($layer == 21) ) { # on top/bottom silk - always print on top-silk to avoid crap. see above
+		} elsif ( ($layer == 21) || ($layer == 20) ) { # on top/bottom silk - always print on top-silk to avoid crap. see above
 			print FILE "$1 $2 $3 $4 $5 $6 $7 21\n";
+		} elsif ( ($layer == 23) || ($layer == 22) ) { # on top/bottom mask - always print on top-mask to avoid crap. see above
+			print FILE "$1 $2 $3 $4 $5 $6 $7 23\n";
 		}
 	}
 	else {
@@ -93,7 +95,9 @@ sub usage() {
 	print "Top    copper:      15\n";
 	print "Bottom copper:	     0 (*)\n";
 	print "Top    silkscreen:  21\n";
-	print "Bottom silkscreen:  20 (*)\n\n";
+	print "Bottom silkscreen:  20 (*)\n";
+	print "Top    mask:        23\n";
+	print "Bottom mask:        22 (*)\n\n";
 	print "(*) To move the mirrored logo to bottom copper/silkscreen\n";
 	print "    move the curser over it and press 'F' for flip layer.\n\n";
 	print "    The layer-swap is not done in this script as KiCad\n";
