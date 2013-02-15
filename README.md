@@ -13,4 +13,4 @@ If necessary, the graphics are available in mirrored versions for the back-layer
 
 ---
 
-[![KiCad-Logos preview](https://github.com/madworm/KiCad-Logos/raw/master/docs/KiCad-Logos_preview.png)](https://github.com/madworm/KiCad-Logos/blob/master/docs/KiCad-Logos_preview.png)
+[![KiCad-Logos preview](https://github.com/madworm/KiCad-Logos/raw/master/DOCS/KiCad-Logos_preview.png)](https://github.com/madworm/KiCad-Logos/blob/master/DOCS/KiCad-Logos_preview.png)
