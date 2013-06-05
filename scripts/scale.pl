@@ -13,6 +13,7 @@ my $size = $ARGV[3]; # in 'mm' or in 'in'
 my $factor;
 my $calibration;
 my $layer = $ARGV[2];
+my $module_name = $ARGV[4] || "LOGO";
 
 open(FILE, '<', $ARGV[0]) || die("cannot open: $!");
 my @infiledata = <FILE>;
@@ -60,6 +61,9 @@ if($size =~ m/^\d{1,3}\.\d{1,3}in$/) {
 open(FILE,'>',$outfile) || die("cannot open: $!");
 foreach $line (@infiledata) {
 	my $tmp = $line;
+
+	$tmp =~ s/LOGO/$module_name/;
+
 	if($tmp =~ m/^(.*Dl)\ (.*)\ (.*)$/) { # polygon line segment with (x,y) coordinates
 		if( ($layer == 23) || ($layer == 21) || ($layer == 15) ) { # top layer (mask, silkscreen, copper)
 			print FILE $1," ",int($2*$factor)," ",int($3*$factor),"\n";
@@ -82,13 +86,18 @@ foreach $line (@infiledata) {
 		}
 	}
 	else {
-		print FILE $line;
+		print FILE $tmp;
 	}
 }
 close(FILE);
 
 sub usage() {
-	print "\nusage: scale.pl <infile.emp> <outfile.emp> <layer number> <size: e.g. 5.00mm or 0.25in>\n\n";
+	print "\nusage: scale.pl <infile.emp> <outfile.emp> <layer number> <size: e.g. 5.00mm or 0.25in> [module-name]\n\n";
+    print "  * <required>\n";
+    print "  * [optional]\n\n";
+    print "module-name defaults to LOGO (set by bitmap2component)\n\n";
+	print "Setting a module-name will be necessary when incorporating multiple logos\n";
+	print "and a footprint-archive needs to be created. Same-name modules are overwritten.\n\n";
 	print "The module will be scaled so that its largest dimension (x or y) matches <size>\n\n";
 	print "KiCad layers:\n";
 	print "-------------\n\n";
