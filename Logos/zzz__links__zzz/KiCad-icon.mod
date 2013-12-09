@@ -1,0 +1,1 @@
+../KiCad-icon/lib/KiCad-icon.mod

@@ -1,0 +1,1 @@
+../OSHW-logo/lib/OSHW-logo.mod
