@@ -34,14 +34,14 @@ if [[ $IMAGE_IS_H_SYMMETRIC = "y" ]]
 then
 	for number in `seq $RANGE_START $RANGE_INCREMENT $RANGE_END`
 	do
-	        ./scale.pl $INPUT_FILE $TMP_FILE 21 ${number}.0mm
+	        ./scale_legacy.pl $INPUT_FILE $TMP_FILE 21 ${number}.0mm
 		perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_silkscreen_${number}mm/" $TMP_FILE
 		cat $TMP_FILE >> ./$LIB_NAME
 	done
 
 	for number in `seq $RANGE_START $RANGE_INCREMENT $RANGE_END`
 	do
-	       	./scale.pl $INPUT_FILE $TMP_FILE 15 ${number}.0mm
+	       	./scale_legacy.pl $INPUT_FILE $TMP_FILE 15 ${number}.0mm
 		perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_copper_${number}mm/" $TMP_FILE
 		cat $TMP_FILE >> ./$LIB_NAME
 	done
@@ -49,22 +49,22 @@ then
 else
 	for number in `seq $RANGE_START $RANGE_INCREMENT $RANGE_END`
 	do
-	        ./scale.pl $INPUT_FILE $TMP_FILE 21 ${number}.0mm
+	        ./scale_legacy.pl $INPUT_FILE $TMP_FILE 21 ${number}.0mm
 		perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_silkscreen-front_${number}mm/" $TMP_FILE
 		cat $TMP_FILE >> ./$LIB_NAME
 
-	        ./scale.pl $INPUT_FILE $TMP_FILE 20 ${number}.0mm
+	        ./scale_legacy.pl $INPUT_FILE $TMP_FILE 20 ${number}.0mm
 		perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_silkscreen-back_${number}mm/" $TMP_FILE
 		cat $TMP_FILE >> ./$LIB_NAME
 	done
 
 	for number in `seq $RANGE_START $RANGE_INCREMENT $RANGE_END`
 	do
-	       	./scale.pl $INPUT_FILE $TMP_FILE 15 ${number}.0mm
+	       	./scale_legacy.pl $INPUT_FILE $TMP_FILE 15 ${number}.0mm
 		perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_copper-front_${number}mm/" $TMP_FILE
 		cat $TMP_FILE >> ./$LIB_NAME
 
-		./scale.pl $INPUT_FILE $TMP_FILE 0 ${number}.0mm
+		./scale_legacy.pl $INPUT_FILE $TMP_FILE 0 ${number}.0mm
 		perl -pi -e "s/LOGO/${LIB_NAME/%.mod/}_copper-back_${number}mm/" $TMP_FILE
 		cat $TMP_FILE >> ./$LIB_NAME
 	done

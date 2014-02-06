@@ -92,7 +92,7 @@ foreach $line (@infiledata) {
 close(FILE);
 
 sub usage() {
-	print "\nusage: scale.pl <infile.emp> <outfile.emp> <layer number> <size: e.g. 5.00mm or 0.25in> [module-name]\n\n";
+	print "\nusage: scale_legacy.pl <infile.emp> <outfile.emp> <layer number> <size: e.g. 5.00mm or 0.25in> [module-name]\n\n";
     print "  * <required>\n";
     print "  * [optional]\n\n";
     print "module-name defaults to LOGO (set by bitmap2component)\n\n";

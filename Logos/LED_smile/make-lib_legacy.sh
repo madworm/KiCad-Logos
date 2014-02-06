@@ -1,0 +1,1 @@
+../../scripts/make-lib_legacy.sh
